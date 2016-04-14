@@ -1,5 +1,5 @@
-angular.module('issueTracker.users.service',[])
-    .factory('userService', ['$http', '$q', 'BASEURL',
+angular.module('issueTracker.users.authentication',[])
+    .factory('authentication', ['$http', '$q', 'BASEURL',
     function($http, $q, BASEURL){
         function register(userData){
             var deferred = $q.defer();
@@ -10,11 +10,15 @@ angular.module('issueTracker.users.service',[])
                     'Email': userData.username,
                     'Password': userData.password,
                     'ConfirmPassword': userData.confirmPassword
-                }
+                },
+                headers: {'Content-Type': 'application/json'}
             };
             $http(request)
                 .then(function(responce){
                     deferred.resolve(responce);
+                },
+                function(err){
+                    deferred.reject(err);
                 });
 
             return deferred.promise;
@@ -32,6 +36,9 @@ angular.module('issueTracker.users.service',[])
             $http(request)
                 .then(function (responce){
                     deferred.resolve(responce.data);
+                },
+                function(err){
+                    deferred.reject(err);
                 });
 
             return deferred.promise;
@@ -48,6 +55,8 @@ angular.module('issueTracker.users.service',[])
             $http(request)
                 .then(function(){
                     deferred.resolve();
+                }, function(err){
+                    deferred.reject(err)
                 });
 
             return deferred.promise;
