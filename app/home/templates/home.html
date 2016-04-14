@@ -8,6 +8,7 @@
             <input type="password" required="required" ng-model="loginUser.password" id="password" class="form-control" />
             <br />
             <button class="btn btn-primary" ng-disabled="loginUserForm.$invalid" ng-click="login(loginUser)">Login</button>
+            <button class="btn btn-primary" ng-if="hasLoggedUser()" ng-click="logout()">Logout</button>
         </form>
     </div>
 
