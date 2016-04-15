@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="css/app-css.css">
     <meta charset="UTF-8">
     <title>Issue tracker</title>
+</head>
+<body>
+    <header>
+        <div ng-include="'app/common/templates/header.html'"></div>
+    </header>
+    <div ng-view></div>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-route.js"></script>
     <script src="lib/angular/angular-resource.js"></script>
@@ -13,12 +19,7 @@
     <script src="lib/jquery.noty/jquery.noty.js"></script>
     <script src="lib/bootstrap/bootstrap-3.1.1.js"></script>
     <script src="lib/ui.bootstrap/ui.bootstrap.pagination-0.12.0.js"></script>
-</head>
-<body>
-    <header>
-        <div ng-include="'app/common/templates/header.html'"></div>
-    </header>
-    <div ng-view></div>
+
     <script src="app/app.js"></script>
     <script src="app/home/homeController.js"></script>
     <script src="app/users/authentication.js"></script>

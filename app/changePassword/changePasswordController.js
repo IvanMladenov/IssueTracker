@@ -7,15 +7,15 @@ angular.module('issueTracker.changePassword.controller', [])
     }])
     .controller('ChangePasswordCtrl', ['$scope', 'changePasswordService', 'notifyService',
         function($scope, changePasswordService, notifyService){
-        $scope.changePassword = function changePassword (data){
-            changePasswordService.changePassword(data)
-                .then(
-                    function(){
-                        notifyService.showInfo('Your password has been changed');
-                    },
-                    function(err){
-                        notifyService.showError('Something went wrong', err);
-                    }
-                )
-        }
+            $scope.changeUserPassword = function(data){
+                changePasswordService.changePassword(data)
+                    .then(
+                        function success(){
+                            notifyService.showInfo('Password successfully changed.');
+                        },
+                        function error(err){
+                            notifyService.showError('Something went wrong', err);
+                        }
+                    )
+            };
     }]);
