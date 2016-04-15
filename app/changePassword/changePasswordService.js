@@ -5,7 +5,6 @@ angular.module('issueTracker.changePassword.service', [])
         function changePassword(data) {
             var deferred = $q.defer();
             var requestData = 'OldPassword=' + data.oldPassword + '&NewPassword=' + data.newPassword + '&ConfirmPassword=' + data.confirmNewPassword;
-            console.log(requestData);
             var request = {
                 method: 'POST',
                 url: BASEURL + 'api/Account/ChangePassword',

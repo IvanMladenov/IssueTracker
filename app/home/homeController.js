@@ -6,10 +6,27 @@ angular.module('issueTracker.home.controller', [])
         })
     }])
     .controller('HomeController', [
-        '$scope', 'authentication', 'notifyService', 'identity',
-        function ($scope, authentication, notifyService, identity) {
+        '$scope', 'authentication', 'notifyService', 'identity', 'homeService',
+        function ($scope, authentication, notifyService, identity, homeService) {
+
+            $scope.isAdmin = function(){
+                return identity.isAdmin();
+            };
 
             $scope.hasLoggedUser = identity.hasLoggedUser;
+
+            $scope.allUsers = function(){
+                homeService.getAllUsers()
+                    .then(
+                        function success(data){
+                            $scope.users = data;
+                            console.log(data);
+                        },
+                        function error(err){
+                            console.log(err);
+                        }
+                    );
+            };
 
             $scope.register = function (userData) {
                 authentication.register(userData)
@@ -26,9 +43,19 @@ angular.module('issueTracker.home.controller', [])
                     .then(function (responce) {
                             sessionStorage['authToken'] = responce.access_token;
                             notifyService.showInfo('Login successfull');
+                            identity.getCurrentUser()
+                                .then(
+                                    function(data){
+                                        sessionStorage['currentUser'] = JSON.stringify(data);
+                                    },
+                                    function(err){
+                                        console.log(err);
+                                    }
+                                )
                         },
                         function (err) {
                             notifyService.showError('Login failed', err);
-                        })
+                        }
+                    );
             };
         }]);

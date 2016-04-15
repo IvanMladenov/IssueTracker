@@ -62,6 +62,7 @@ angular.module('issueTracker.users.authentication',[])
             return deferred.promise;
         }
 
+
         return{
             register: register,
             login: login,

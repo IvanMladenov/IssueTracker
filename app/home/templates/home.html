@@ -28,4 +28,5 @@
 </div>
 <div ng-if="hasLoggedUser()">
     <h1>Test</h1>
+    <button ng-if="isAdmin()" ng-click="allUsers()">Show Users</button>
 </div>
