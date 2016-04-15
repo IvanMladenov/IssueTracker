@@ -1,15 +1,7 @@
-angular.module('socialNetwork.common.controller', [])
+angular.module('issueTracker.common.controller', [])
     .controller('MainCtrl', [
         '$scope',
-        '$http',
         'identity',
-        function($scope, $http, identity) {
-
-            //identity.getCurrentUser()
-            //    .then(function(user) {
-            //        $scope.currentUser = user;
-            //    });
-            //
-            //$scope.isAuthenticated = identity.isAuthenticated();
-
+        function ($scope, identity) {
+            $scope.hasLoggedUser = identity.hasLoggedUser;
         }]);

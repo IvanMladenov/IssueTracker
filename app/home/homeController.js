@@ -8,6 +8,7 @@ angular.module('issueTracker.home.controller', [])
     .controller('HomeController', [
         '$scope', 'authentication', 'notifyService', 'identity',
         function ($scope, authentication, notifyService, identity) {
+
             $scope.hasLoggedUser = identity.hasLoggedUser;
 
             $scope.register = function (userData) {
@@ -30,15 +31,4 @@ angular.module('issueTracker.home.controller', [])
                             notifyService.showError('Login failed', err);
                         })
             };
-
-            $scope.logout = function () {
-                authentication.logout()
-                    .then(function () {
-                            sessionStorage.clear();
-                            notifyService.showInfo('Successfully logged out')
-                        },
-                        function (err) {
-                            notifyService.showError('Not logged out', err);
-                        });
-            }
         }]);

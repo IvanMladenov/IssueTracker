@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Issue tracker</title>
 </head>
-<body>
+<body ng-controller="MainCtrl">
     <header>
         <div ng-include="'app/common/templates/header.html'"></div>
     </header>
@@ -27,5 +27,7 @@
     <script src="app/users/identity.js"></script>
     <script src="app/changePassword/changePasswordController.js"></script>
     <script src="app/changePassword/changePasswordService.js"></script>
+    <script src="app/logout/logoutController.js"></script>
+    <script src="app/common/mainController.js"></script>
 </body>
 </html>
