@@ -29,7 +29,7 @@
 <div class="jumbotron container" ng-if="isAdmin()">
     <div class="col-md-5">
         <h2>USERS</h2>
-        <input type="button" value="Show users" ng-if="isAdmin()" ng-click="allUsers()"/>
+        <input class="btn btn-info" type="button" value="Show users" ng-if="isAdmin()" ng-click="allUsers()"/>
     </div>
     <div class="col-md-7">
         <table class="table table-hover">
@@ -43,7 +43,7 @@
             <tr ng-repeat="user in users">
                 <td>{{user.Username}}</td>
                 <td>{{user.isAdmin}}</td>
-                <td ng-if="!user.isAdmin"><button ng-click="makeAdmin(user.Id)">Make admin</button></td>
+                <td ng-if="!user.isAdmin"><button class="btn btn-info" ng-click="makeAdmin(user.Id)">Make admin</button></td>
             </tr>
             </tbody>
         </table>
