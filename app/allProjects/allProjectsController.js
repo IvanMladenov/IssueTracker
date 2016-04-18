@@ -1,11 +1,13 @@
 angular.module('issueTracker.projects.controller', [])
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/projects', {
+        $routeProvider
+            .when('/projects', {
             controller: 'ProjectsController',
-            templateUrl: 'app/projects/templates/projects.html'
+            templateUrl: 'app/allProjects/templates/projects.html'
         })
     }])
-    .controller('ProjectsController', ['$scope', 'projectsService', 'notifyService',
+    .controller('ProjectsController', [
+        '$scope', 'projectsService', 'notifyService',
         function ($scope, projectsService, notifyService) {
             $scope.projects = [];
             $scope.getAllProjects = function () {

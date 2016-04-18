@@ -1,5 +1,5 @@
 angular.module('issueTracker.projectView.service', [])
-    .factory('projectViewService', [
+    .factory('projectService', [
         '$http', '$q', 'BASEURL',
         function($http, $q, BASEURL){
             function getProjectById(id){
