@@ -31,7 +31,6 @@ angular.module('issueTracker.home.controller', [])
                     .then(
                         function success(data){
                             $scope.users = data.data;
-                            console.log(data);
                         },
                         function error(err){
                             console.log(err);
