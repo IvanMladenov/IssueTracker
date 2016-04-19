@@ -1,7 +1,7 @@
 <div class="jumbotron container">
     <div class="col-md-5">
         <h2>{{project.ProjectKey}}</h2>
-        <a ng-if="isAdmin()" class="btn btn-info" href="#projects/{{project.Id}}/edit">Edit</a>
+        <a ng-if="isAdmin()" class="btn btn-info" href="#projects/edit/{{project.Id}}">Edit</a>
         <a ng-if="isAdmin()" class="btn btn-info" href="#">Add Issue</a>
         <p>Project key: {{project.ProjectKey}}</p>
         <p><strong>Name:</strong> {{project.Name}}</p>

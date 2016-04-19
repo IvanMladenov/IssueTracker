@@ -5,7 +5,7 @@ angular.module('issueTracker.project.controller', [])
                 controller: 'ProjectController',
                 templateUrl: 'app/project/templates/project-view.html'
             })
-            .when('/projects/:id/edit', {
+            .when('/projects/edit/:id', {
                 controller: 'ProjectEditController',
                 templateUrl: 'app/project/templates/project-edit.html'
             })
@@ -13,6 +13,7 @@ angular.module('issueTracker.project.controller', [])
     .controller('ProjectEditController', [
         '$scope', '$routeParams', 'projectService', 'notifyService',
         function ($scope, $routeParams, projectService, notifyService) {
+            $scope.name = 'Ivan';
             $scope.getProjectById = function (id) {
                 projectService.getProjectById(id)
                     .then(
@@ -26,12 +27,12 @@ angular.module('issueTracker.project.controller', [])
                     )
             };
 
-            $scope.getProjectById($routeParams.id);
+            $scope.getProjectById($routeParams.id.trim('/edit'));
         }])
     .controller('ProjectController', [
         '$scope', '$routeParams', 'projectService', 'notifyService',
         function ($scope, $routeParams, projectService, notifyService) {
-            $scope.getProjectById = function (id) {
+            getProjectById = function (id) {
                 projectService.getProjectById(id)
                     .then(
                         function success(project) {
@@ -43,7 +44,7 @@ angular.module('issueTracker.project.controller', [])
                     )
             };
 
-            $scope.getProjectIssues = function (projectId) {
+            getProjectIssues = function (projectId) {
                 projectService.getProjectIssues(projectId)
                     .then(
                         function success(issues) {
@@ -55,6 +56,6 @@ angular.module('issueTracker.project.controller', [])
                     )
             };
 
-            $scope.getProjectById($routeParams.id);
-            $scope.getProjectIssues($routeParams.id);
+            getProjectById($routeParams.id);
+            getProjectIssues($routeParams.id);
         }]);

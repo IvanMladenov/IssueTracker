@@ -26,17 +26,17 @@ angular.module('issueTracker.home.controller', [])
 
             $scope.hasLoggedUser = identity.hasLoggedUser;
 
-            $scope.allUsers = function(){
-                homeService.getAllUsers()
-                    .then(
-                        function success(data){
-                            $scope.users = data.data;
-                        },
-                        function error(err){
-                            console.log(err);
-                        }
-                    );
-            };
+            //$scope.allUsers = function(){
+            //    homeService.getAllUsers()
+            //        .then(
+            //            function success(data){
+            //                $scope.users = data.data;
+            //            },
+            //            function error(err){
+            //                console.log(err);
+            //            }
+            //        );
+            //};
 
             $scope.register = function (userData) {
                 authentication.register(userData)

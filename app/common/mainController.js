@@ -4,7 +4,10 @@ angular.module('issueTracker.common.controller', [])
         'identity',
         'authentication',
         'notifyService',
-        function ($scope, identity, authentication, notifyService) {
+        'mainService',
+        function ($scope, identity, authentication, notifyService, mainService) {
+
+
             $scope.hasLoggedUser = identity.hasLoggedUser;
 
             $scope.isAdmin = identity.isAdmin;
@@ -20,5 +23,17 @@ angular.module('issueTracker.common.controller', [])
                             notifyService.showError('Logout unsuccessfull', err);
                         }
                     )
+            };
+
+            $scope.allUsers = function(){
+                mainService.getAllUsers()
+                    .then(
+                        function success(data){
+                            $scope.users = data.data;
+                        },
+                        function error(err){
+                            console.log(err);
+                        }
+                    );
             };
         }]);
