@@ -8,21 +8,6 @@ angular.module('issueTracker.home.controller', [])
     .controller('HomeController', [
         '$scope', 'authentication', 'notifyService', 'identity', 'homeService',
         function ($scope, authentication, notifyService, identity, homeService) {
-            $scope.users = [];
-
-            $scope.isAdmin = function(){
-                return identity.isAdmin();
-            };
-
-            $scope.makeAdmin = function(userId){
-                homeService.makeAdmin(userId)
-                    .then(
-                        function success(){
-                            $scope.allUsers();
-                            notifyService.showInfo('Successfully made this user admin');
-                        }
-                    )
-            };
 
             $scope.hasLoggedUser = identity.hasLoggedUser;
 
