@@ -11,6 +11,25 @@ angular.module('issueTracker.home.controller', [])
 
             $scope.hasLoggedUser = identity.hasLoggedUser;
 
+            $scope.issuesParams = {
+                pageSize: 10,
+                pageNumber: 1
+            };
+
+            $scope.getUserIssues = function (){
+                homeService.getUserIssues($scope.issuesParams)
+                    .then(
+                        function success(data){
+                            $scope.userIssues = data.Issues;
+                            $scope.issuesCount = data.TotalPages*$scope.issuesParams.pageSize;
+                            console.log(data);
+                        },
+                        function error(err){
+                            notifyService.showError('Cannot load issues at the moment', err);
+                        }
+                    )
+            };
+
             $scope.register = function (userData) {
                 authentication.register(userData)
                     .then(function (responce) {
@@ -41,4 +60,8 @@ angular.module('issueTracker.home.controller', [])
                         }
                     );
             };
+
+            if ($scope.hasLoggedUser()){
+                $scope.getUserIssues();
+            }
         }]);

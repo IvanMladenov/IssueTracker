@@ -1,6 +1,7 @@
 angular.module('issueTracker', [
     'ngRoute',
     'ngResource',
+    'ui.bootstrap.pagination',
     'issueTracker.home.controller',
     'issueTracker.users.authentication',
     'issueTracker.common.notifyService',
