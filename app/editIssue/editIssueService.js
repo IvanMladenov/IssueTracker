@@ -11,7 +11,7 @@ angular.module('issueTracker.editIssue.service', [])
 
                 var data = 'Title=' + issue.Title +
                     '&Description=' + issue.Description +
-                    '&DueDate=' + issue.DueDate.toLocaleString()  +
+                    '&DueDate=' + issue.DueDate  +
                     '&AssigneeId=' + issue.AssigneeId +
                     '&PriorityId=' + issue.PriorityId +
                     dataLabels;

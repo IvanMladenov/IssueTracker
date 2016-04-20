@@ -13,11 +13,11 @@ angular.module('issueTracker.editIssue.controller', [])
             issuePageService.getIssueById($routeParams.id)
                 .then(
                     function success(issue){
-                        console.log(issue);
                         $scope.currentIssue = issue.data;
                         $scope.currentIssueDueDateLocal =new Date(issue.data.DueDate);
                         $scope.issuePriority = issue.data.Priority.Id;
                         $scope.currentIssueLabels = [];
+                        console.log($scope.currentIssueDueDateLocal);
 
                         issue.data.Labels.forEach(function(label) {
                             $scope.currentIssueLabels.push(label.Name);
@@ -25,7 +25,6 @@ angular.module('issueTracker.editIssue.controller', [])
 
                         projectService.getProjectById(issue.data.Project.Id)
                             .then(function success(project) {
-                                console.log(project);
                                 $scope.projectPriorities = project.data.Priorities;
                             });
                     },
@@ -42,7 +41,7 @@ angular.module('issueTracker.editIssue.controller', [])
                 var issueToEdit = {
                     Title: $scope.currentIssue.Title,
                     Description: $scope.currentIssue.Description,
-                    DueDate: $scope.currentIssueDueDateLocal,
+                    DueDate: $scope.currentIssueDueDateLocal.toISOString(),
                     AssigneeId: $scope.currentIssue.Assignee.Id,
                     PriorityId: $scope.issuePriority,
                     Labels: $scope.currentIssueLabels
@@ -51,7 +50,7 @@ angular.module('issueTracker.editIssue.controller', [])
                 editIssueService.editIssue(issueToEdit, $routeParams.id)
                     .then(
                         function success(responce){
-                            $location.path('issues/' + responce.Id)
+                            $location.path('issues/' + responce.data.Id)
                         },
                         function error(err){
                             console.log(err);
