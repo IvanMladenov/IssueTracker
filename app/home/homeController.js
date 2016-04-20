@@ -22,7 +22,6 @@ angular.module('issueTracker.home.controller', [])
                         function success(data){
                             $scope.userIssues = data.Issues;
                             $scope.issuesCount = data.TotalPages*$scope.issuesParams.pageSize;
-                            console.log(data);
                         },
                         function error(err){
                             notifyService.showError('Cannot load issues at the moment', err);

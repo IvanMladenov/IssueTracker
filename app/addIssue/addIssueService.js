@@ -1,23 +1,26 @@
-angular.module('issueTracker.editIssue.service', [])
-    .factory('editIssueService', [
+angular.module('issueTracker.addIssue.service', [])
+    .factory('addIssueService', [
         '$http', '$q', 'BASEURL',
         function($http, $q, BASEURL){
-            function editIssue(issue, id){
+            function addIssue (issue){
                 var deferred = $q.defer();
+
                 var dataLabels = '';
-                issue.Labels.forEach(function(label, index) {
-                    dataLabels += '&labels[' + index + '].Name=' + label.trim();
+                issue.Labels.forEach(function(l, index) {
+                    dataLabels += '&labels[' + index + '].Name=' + l.trim();
                 });
 
                 var data = 'Title=' + issue.Title +
                     '&Description=' + issue.Description +
-                    '&DueDate=' + issue.DueDate  +
+                    '&DueDate=' + issue.DueDate +
+                    '&ProjectId=' + issue.ProjectId +
                     '&AssigneeId=' + issue.AssigneeId +
                     '&PriorityId=' + issue.PriorityId +
                     dataLabels;
+
                 var requestData = {
-                    method: 'PUT',
-                    url: BASEURL + 'issues/' + id,
+                    method: 'POST',
+                    url: BASEURL + 'issues/',
                     data: data,
                     headers: {
                         Authorization: 'Bearer ' + sessionStorage.authToken,
@@ -40,7 +43,7 @@ angular.module('issueTracker.editIssue.service', [])
             }
 
             return {
-                editIssue: editIssue
+                addIssue: addIssue
             }
         }
     ]);

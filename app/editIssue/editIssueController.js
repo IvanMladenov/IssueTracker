@@ -17,7 +17,6 @@ angular.module('issueTracker.editIssue.controller', [])
                         $scope.currentIssueDueDateLocal =new Date(issue.data.DueDate);
                         $scope.issuePriority = issue.data.Priority.Id;
                         $scope.currentIssueLabels = [];
-                        console.log($scope.currentIssueDueDateLocal);
 
                         issue.data.Labels.forEach(function(label) {
                             $scope.currentIssueLabels.push(label.Name);
@@ -53,7 +52,6 @@ angular.module('issueTracker.editIssue.controller', [])
                             $location.path('issues/' + responce.data.Id)
                         },
                         function error(err){
-                            console.log(err);
                             notifyService.showError('Cannot edit issue at the moment', err);
                         }
                     )

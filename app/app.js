@@ -22,7 +22,9 @@ angular.module('issueTracker', [
     'issueTracker.issuePage.controller',
     'issueTracker.issuePage.service',
     'issueTracker.editIssue.controller',
-    'issueTracker.editIssue.service'
+    'issueTracker.editIssue.service',
+    'issueTracker.addIssue.controller',
+    'issueTracker.addIssue.service'
 ])
     .constant('BASEURL', ' http://softuni-issue-tracker.azurewebsites.net/')
     .config(['$routeProvider', function($routeProvider){
