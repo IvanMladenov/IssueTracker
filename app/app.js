@@ -34,7 +34,7 @@ angular.module('issueTracker', [
         })
     }])
     .run(['$rootScope', '$location', 'identity', function($rootScope, $location, identity) {
-        $rootScope.$on('$locationChangeStart', function(event) {
+        $rootScope.$on('$ChangeStart', function(event) {
             if(!identity.hasLoggedUser()) {
                 $location.path('/');
             }

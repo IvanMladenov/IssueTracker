@@ -11,6 +11,7 @@ angular.module('issueTracker.issuePage.controller', [])
             issuePageService.getIssueById($routeParams.id)
                 .then(
                     function success(issue) {
+                        console.log(issue);
                         $scope.currentIssue = issue.data;
                         $scope.currentIssueLabels = [];
                         issue.data.Labels.forEach(function(label) {

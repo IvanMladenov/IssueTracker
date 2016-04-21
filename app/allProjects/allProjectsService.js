@@ -1,5 +1,5 @@
 angular.module('issueTracker.projects.service', [])
-    .factory('projectsService', ['$http', '$q', 'BASEURL',
+    .factory('allProjectsService', ['$http', '$q', 'BASEURL',
         function ($http, $q, BASEURL) {
             getAllProject = function () {
                 var deferred = $q.defer();
