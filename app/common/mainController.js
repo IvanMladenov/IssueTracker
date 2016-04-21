@@ -7,7 +7,6 @@ angular.module('issueTracker.common.controller', [])
         'mainService',
         function ($scope, identity, authentication, notifyService, mainService) {
 
-
             $scope.hasLoggedUser = identity.hasLoggedUser;
 
             $scope.isAdmin = identity.isAdmin;

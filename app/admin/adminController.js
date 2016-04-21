@@ -2,7 +2,10 @@ angular.module('issueTracker.admin.controller', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/admin', {
             controller: 'AdminController',
-            templateUrl: 'app/admin/templates/admin.html'
+            templateUrl: 'app/admin/templates/admin.html',
+            access: {
+                requiresAdmin: true
+            }
         })
     }])
     .controller('AdminController', [

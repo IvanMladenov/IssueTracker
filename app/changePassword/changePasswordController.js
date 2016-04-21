@@ -2,7 +2,10 @@ angular.module('issueTracker.changePassword.controller', [])
     .config(['$routeProvider', function($routeProvider){
         $routeProvider.when('/profile/password', {
             templateUrl: 'app/changePassword/templates/change-password.html',
-            controller: 'ChangePasswordCtrl'
+            controller: 'ChangePasswordCtrl',
+            access: {
+                requiresLoggedUser: true
+            }
         })
     }])
     .controller('ChangePasswordCtrl', ['$scope', 'changePasswordService', 'notifyService',

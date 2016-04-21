@@ -2,7 +2,10 @@ angular.module('issueTracker.addIssue.controller', [])
     .config(['$routeProvider', function($routeProvider){
         $routeProvider.when('/projects/add-issue/:id', {
             controller: 'AddIssueController',
-            templateUrl: 'app/addIssue/templates/add-issue.html'
+            templateUrl: 'app/addIssue/templates/add-issue.html',
+            access: {
+                requiresLoggedUser: true
+            }
         })
     }])
     .controller('AddIssueController', [

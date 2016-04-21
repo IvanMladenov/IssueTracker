@@ -27,7 +27,7 @@ angular.module('issueTracker.home.service', [])
 
             function getUserProjectsWhereIsLead(pageParams){
                 var deferred = $q.defer();
-                var id = JSON.parse(sessionStorage.currentUser).Id;
+                var id = JSON.parse(sessionStorage['currentUser']).Id;
                 var requestData = {
                     method: 'GET',
                     url: BASEURL + 'projects?filter=Lead.Id="' + id + '"&pageSize='+pageParams.pageSize + '&pageNumber=' + pageParams.pageNumber,

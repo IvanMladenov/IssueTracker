@@ -33,10 +33,20 @@ angular.module('issueTracker', [
             redirectTo: '/'
         })
     }])
-    .run(['$rootScope', '$location', 'identity', function($rootScope, $location, identity) {
-        $rootScope.$on('$ChangeStart', function(event) {
-            if(!identity.hasLoggedUser()) {
+    .run(['$rootScope', '$location', 'identity',
+        function($rootScope, $location, identity) {
+        $rootScope.$on('$routeChangeStart', function(event ,route) {
+            if (route.access){
+                if(route.access.requiresLoggedUser&&!identity.hasLoggedUser()) {
+                    $location.path('/');
+                }
+                if (route.access.requiresAdmin && !identity.isAdmin()) {
+                    console.log();
+                    $location.path('/');
+                }
+            }else {
                 $location.path('/');
             }
+
         });
     }]);

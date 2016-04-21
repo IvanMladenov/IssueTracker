@@ -3,7 +3,10 @@ angular.module('issueTracker.projects.controller', [])
         $routeProvider
             .when('/projects', {
             controller: 'AllProjectsController',
-            templateUrl: 'app/allProjects/templates/projects.html'
+            templateUrl: 'app/allProjects/templates/projects.html',
+            access: {
+                requiresLoggedUser: true
+            }
         })
     }])
     .controller('AllProjectsController', [

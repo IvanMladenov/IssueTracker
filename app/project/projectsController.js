@@ -3,11 +3,17 @@ angular.module('issueTracker.project.controller', [])
         $routeProvider
             .when('/projects/:id', {
                 controller: 'ProjectController',
-                templateUrl: 'app/project/templates/project-view.html'
+                templateUrl: 'app/project/templates/project-view.html',
+                access: {
+                    requiresLoggedUser: true
+                }
             })
             .when('/projects/edit/:id', {
                 controller: 'ProjectEditController',
-                templateUrl: 'app/project/templates/project-edit.html'
+                templateUrl: 'app/project/templates/project-edit.html',
+                access: {
+                    requiresLoggedUser: true
+                }
             })
     }])
     .controller('ProjectEditController', [
@@ -71,13 +77,19 @@ angular.module('issueTracker.project.controller', [])
             getProjectById($routeParams.id);
         }])
     .controller('ProjectController', [
-        '$scope', '$routeParams', 'projectService', 'notifyService',
-        function ($scope, $routeParams, projectService, notifyService) {
+        '$scope', '$routeParams', 'projectService', 'identity', 'notifyService',
+        function ($scope, $routeParams, projectService, identity, notifyService) {
             getProjectById = function (id) {
                 projectService.getProjectById(id)
                     .then(
                         function success(project) {
                             $scope.project = project.data;
+                            identity.setProjectLeader($scope.project.Id)
+                                .then(
+                                    function success(){
+                                        $scope.isProjectLeader = identity.isProjectLeader();
+                                    }
+                                );
                         },
                         function error(err) {
                             notifyService.showError('Cannot load this project', err)

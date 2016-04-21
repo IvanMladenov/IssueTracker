@@ -1,8 +1,8 @@
 <div class="jumbotron container">
     <div class="col-md-5">
         <h2>{{project.ProjectKey}}</h2>
-        <a ng-if="isAdmin()" class="btn btn-info" href="#projects/edit/{{project.Id}}">Edit</a>
-        <a ng-if="isAdmin()" class="btn btn-info" href="#projects/add-issue/{{project.Id}}">Add Issue</a>
+        <a ng-if="isAdmin()||isProjectLeader" class="btn btn-info" href="#projects/edit/{{project.Id}}">Edit</a>
+        <a ng-if="isAdmin()||isProjectLeader" class="btn btn-info" href="#projects/add-issue/{{project.Id}}">Add Issue</a>
         <p>Project key: {{project.ProjectKey}}</p>
         <p><strong>Name:</strong> {{project.Name}}</p>
         <p><strong>Description:</strong> {{project.Description}}</p>
@@ -22,7 +22,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="issue in projectIssues">
-                <td><a href="#">{{issue.Title}}</a></td>
+                <td><a href="#issues/{{issue.Id}}">{{issue.Title}}</a></td>
                 <td>{{issue.Description}}</td>
                 <td>{{issue.DueDate}}</td>
                 <td>{{issue.Assignee.Username}}</td>

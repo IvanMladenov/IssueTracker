@@ -2,7 +2,10 @@ angular.module('issueTracker.home.controller', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/', {
             controller: 'HomeController',
-            templateUrl: 'app/home/templates/home.html'
+            templateUrl: 'app/home/templates/home.html',
+            access: {
+                requiresLoggedUser: true
+            }
         })
     }])
     .controller('HomeController', [
@@ -60,18 +63,19 @@ angular.module('issueTracker.home.controller', [])
             $scope.login = function (userData) {
                 authentication.login(userData)
                     .then(function (responce) {
-                            sessionStorage['authToken'] = responce.access_token;
-                            $scope.getUserIssues();
-                            notifyService.showInfo('Login successfull');
-                            identity.getCurrentUser()
-                                .then(
-                                    function (data) {
-                                        sessionStorage['currentUser'] = JSON.stringify(data);
-                                    },
-                                    function (err) {
-                                        console.log(err);
-                                    }
-                                )
+                        sessionStorage['authToken'] = responce.access_token;
+                        $scope.getUserIssues();
+                        notifyService.showInfo('Login successfull');
+                        identity.getCurrentUser()
+                            .then(
+                                function (data) {
+                                    sessionStorage['currentUser'] = JSON.stringify(data);
+                                    $scope.getAssociatedProjects();
+                                },
+                                function (err) {
+                                    console.log(err);
+                                }
+                            )
                         },
                         function (err) {
                             notifyService.showError('Login failed', err);

@@ -2,7 +2,10 @@ angular.module('issueTracker.editIssue.controller', [])
     .config(['$routeProvider', function($routeProvider){
         $routeProvider.when('/issues/edit/:id', {
             controller: 'EditIssueController',
-            templateUrl: 'app/editIssue/templates/edit-issue.html'
+            templateUrl: 'app/editIssue/templates/edit-issue.html',
+            access: {
+                requiresLoggedUser: true
+            }
         })
     }])
     .controller('EditIssueController', [

@@ -2,6 +2,7 @@ angular.module('issueTracker.users.identity', [])
     .factory('identity', ['BASEURL', '$q', '$http',
         function (BASEURL, $q, $http) {
 
+
             function getCurrentUser(){
                 var deferred = $q.defer();
                 var request = {
@@ -16,6 +17,30 @@ angular.module('issueTracker.users.identity', [])
                         deferred.reject(err)
                     });
                 return deferred.promise;
+            }
+
+            var projectLeader = false;
+
+            function setProjectLeader (projectId){
+                var deferred = $q.defer();
+                var request = {
+                    method: 'GET',
+                    url: BASEURL + 'projects/' + projectId,
+                    headers: {'Authorization': 'Bearer ' + sessionStorage.authToken}
+                };
+                $http(request)
+                    .then(function (data) {
+                        projectLeader = data.data.Lead.Id===JSON.parse(sessionStorage.currentUser).Id;
+                        deferred.resolve();
+                    }, function (err) {
+                        deferred.reject(err)
+                    });
+                return deferred.promise;
+
+            }
+
+            function isProjectLeader(){
+                return projectLeader;
             }
 
             var isAdministrator = function(){
@@ -43,6 +68,8 @@ angular.module('issueTracker.users.identity', [])
             return {
                 hasLoggedUser: hasLoggedUser,
                 getCurrentUser: getCurrentUser,
-                isAdmin: isAdmin
+                isAdmin: isAdmin,
+                setProjectLeader: setProjectLeader,
+                isProjectLeader: isProjectLeader
             }
         }]);
