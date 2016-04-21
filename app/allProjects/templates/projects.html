@@ -18,5 +18,9 @@
             </tr>
             </tbody>
         </table>
+        <pagination total-items="projectsCount" ng-model="projectsParams.pageNumber"
+                    items-per-page="projectsParams.pageSize" ng-change="getAllProjects()"
+                    max-size="9" boundary-links="true" class="aligner">
+        </pagination>
     </div>
 </div>

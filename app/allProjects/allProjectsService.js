@@ -1,11 +1,11 @@
 angular.module('issueTracker.projects.service', [])
     .factory('allProjectsService', ['$http', '$q', 'BASEURL',
         function ($http, $q, BASEURL) {
-            getAllProject = function () {
+            getAllProject = function (projectsParams) {
                 var deferred = $q.defer();
                 var requestData = {
                     method: 'GET',
-                    url: BASEURL + 'projects',
+                    url: BASEURL + 'projects?filter=&pageSize=' + projectsParams.pageSize + '&pageNumber=' + projectsParams.pageNumber,
                     headers: {
                         Authorization: 'Bearer ' + sessionStorage.authToken
                     }
