@@ -35,14 +35,13 @@ angular.module('issueTracker', [
     }])
     .run(['$rootScope', '$location', 'identity',
         function($rootScope, $location, identity) {
-        $rootScope.$on('$routeChangeStart', function(event ,route) {
+        $rootScope.$on('$routeChangeStart', function(event ,route, prev) {
             if (route.access){
                 if(route.access.requiresLoggedUser&&!identity.hasLoggedUser()) {
-                    $location.path('/');
+                    $location.path(prev.$$route.originalPath);
                 }
                 if (route.access.requiresAdmin && !identity.isAdmin()) {
-                    console.log();
-                    $location.path('/');
+                    $location.path(prev.$$route.originalPath);
                 }
             }else {
                 $location.path('/');

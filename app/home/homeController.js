@@ -29,6 +29,7 @@ angular.module('issueTracker.home.controller', [])
                     .then(
                         function success(data) {
                             $scope.userIssues = data.Issues;
+                            $scope.showIssuesPagination = data.TotalPages>1;
                             $scope.issuesCount = data.TotalPages * $scope.issuesParams.pageSize;
                         },
                         function error(err) {
@@ -41,6 +42,7 @@ angular.module('issueTracker.home.controller', [])
                 homeService.getUserProjects($scope.projectsParams)
                     .then(
                         function success(projects){
+                            $scope.showProjectsPagination = projects.TotalPages>1;
                             $scope.projectsCount = projects.TotalPages * $scope.projectsParams.pageSize;
                             $scope.projectsWhereLead = projects.Projects;
                         },

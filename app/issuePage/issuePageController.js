@@ -29,6 +29,7 @@ angular.module('issueTracker.issuePage.controller', [])
                     .then(
                         function success(issue) {
                             $scope.currentIssue = issue.data;
+                            $scope.isAssignee = $scope.currentIssue.Assignee.Id === JSON.parse(sessionStorage.currentUser).Id;
                             $scope.currentIssueLabels = [];
                             issue.data.Labels.forEach(function (label) {
                                 $scope.currentIssueLabels.push(label.Name);

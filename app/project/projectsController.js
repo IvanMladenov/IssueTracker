@@ -102,6 +102,21 @@ angular.module('issueTracker.project.controller', [])
                     .then(
                         function success(issues) {
                             $scope.projectIssues = issues.data;
+                            //console.log(issues.data);
+                            $scope.authors = [];
+                            $scope.assignees = [];
+                            var hashAuthors = {};
+                            var hashAssignee = {};
+                            issues.data.forEach(function(issue){
+                                if (!hashAuthors[issue.Author.Username]){
+                                    hashAuthors[issue.Author.Username] = true;
+                                    $scope.authors.push([issue.Author.Username, issue.Author.Id]);
+                                }
+                                if (!hashAssignee[issue.Assignee.Username]){
+                                    hashAssignee[issue.Assignee.Username]=true;
+                                    $scope.assignees.push([issue.Assignee.Username, issue.Assignee.Id]);
+                                }
+                            });
                         },
                         function error(err) {
                             notifyService.showError('Cannot load issues for this project', err);

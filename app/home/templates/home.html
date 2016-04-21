@@ -37,7 +37,7 @@
                 <td><a href="#projects/{{project.Id}}">{{project.Name}}</a></td>
             </tr>
         </table>
-        <pagination total-items="projectsCount" ng-model="projectsParams.pageNumber"
+        <pagination  ng-if="showProjectsPagination" total-items="projectsCount" ng-model="projectsParams.pageNumber"
                     items-per-page="projectsParams.pageSize" ng-change="getAssociatedProjects()"
                     max-size="5" boundary-links="true" class="aligner">
         </pagination>
@@ -61,7 +61,7 @@
             </tr>
             </tbody>
         </table>
-        <pagination total-items="issuesCount" ng-model="issuesParams.pageNumber"
+        <pagination ng-if="showIssuesPagination" total-items="issuesCount" ng-model="issuesParams.pageNumber"
                     items-per-page="issuesParams.pageSize" ng-change="getUserIssues()"
                     max-size="9" boundary-links="true" class="aligner">
         </pagination>
