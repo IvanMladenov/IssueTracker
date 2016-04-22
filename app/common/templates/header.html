@@ -6,10 +6,10 @@
         <ul ng-if="hasLoggedUser()" class="nav navbar-nav">
             <li><a href="#/">Dashboard</a></li>
             <li><a href="#/projects">Projects</a></li>
+            <li ng-if="isAdmin()"><a href="#/admin">Admin</a></li>
         </ul>
         <ul ng-if="hasLoggedUser()" class="nav navbar-nav navbar-right">
-            <li ng-if="isAdmin()"><a href="#/admin">Admin</a></li>
-            <li><a href="#/profile/password">Change password</a></li>
+            <li><a href="#/profile/password" ng-cloak>{{userUsername()}}</a></li>
             <li ng-click="logout()"><a href="#/logout">Logout</a></li>
         </ul>
     </div>

@@ -3,3 +3,24 @@
     padding: 15px;
     border-radius: 20px;
 }
+#author-info{
+    background-color: #b9def0;
+    padding: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+#comment-text{
+    padding: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid #b9def0;
+}
+#comment-field{
+    margin-bottom: 10px;
+}
+#prev-comments{
+    margin-bottom: 3px;
+}
+#add-comment-field{
+    margin-top: 20px;
+}

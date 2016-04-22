@@ -1,0 +1,15 @@
+<div class="col-md-5">
+    <a href="#/projects/add"><button type="button" class="btn  btn-info" ng-if="isAdmin()">Add new project</button></a>
+    <a href="#/projects"><button type="button" class="btn  btn-info" ng-if="isAdmin()">All projects</button></a>
+    <h2>Dashboard</h2>
+    <h3>My lead projects</h3>
+    <table class="table">
+        <tr ng-repeat="project in projectsWhereLead">
+            <td><a href="#projects/{{project.Id}}">{{project.Name}}</a></td>
+        </tr>
+    </table>
+    <pagination  ng-if="showProjectsPagination" total-items="projectsCount" ng-model="projectsParams.pageNumber"
+                 items-per-page="projectsParams.pageSize" ng-change="getAssociatedProjects()"
+                 max-size="5" boundary-links="true" class="aligner">
+    </pagination>
+</div>

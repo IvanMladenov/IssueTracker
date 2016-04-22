@@ -65,11 +65,19 @@ angular.module('issueTracker.users.identity', [])
                 return sessionStorage.authToken !== undefined;
             }
 
+            function getCurrentUserUsername(){
+                if (!sessionStorage.currentUser){
+                    return ''
+                }
+                return  JSON.parse(sessionStorage.currentUser).Username;
+            }
+
             return {
                 hasLoggedUser: hasLoggedUser,
                 getCurrentUser: getCurrentUser,
                 isAdmin: isAdmin,
                 setProjectLeader: setProjectLeader,
-                isProjectLeader: isProjectLeader
+                isProjectLeader: isProjectLeader,
+                getUsername: getCurrentUserUsername
             }
         }]);

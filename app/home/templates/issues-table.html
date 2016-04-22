@@ -1,0 +1,24 @@
+<div class="col-md-7">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Project</th>
+            <th>Due Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="issue in userIssues">
+            <td><a href="#issues/{{issue.Id}}">{{issue.Title}}</a></td>
+            <td>{{issue.Description}}</td>
+            <td><a href="#projects/{{issue.Project.Id}}">{{issue.Project.Name}}</a></td>
+            <td>{{issue.DueDate|date}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <pagination ng-if="showIssuesPagination" total-items="issuesCount" ng-model="issuesParams.pageNumber"
+                items-per-page="issuesParams.pageSize" ng-change="getUserIssues()"
+                max-size="9" boundary-links="true" class="aligner">
+    </pagination>
+</div>

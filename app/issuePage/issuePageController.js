@@ -11,6 +11,7 @@ angular.module('issueTracker.issuePage.controller', [])
     .controller('IssuePageController', [
         '$scope', '$routeParams', '$location', 'issuePageService', 'identity', 'notifyService',
         function ($scope, $routeParams, $location, issuePageService, identity, notifyService) {
+            $scope.newComment = {};
 
             $scope.changeStatus = function (statusId) {
                 issuePageService.changeIssueStatus($scope.currentIssue.Id, statusId)
@@ -47,6 +48,32 @@ angular.module('issueTracker.issuePage.controller', [])
                     );
             }
 
-            getIssue();
+            function getComments (){
+                issuePageService.getIssueComments($routeParams.id)
+                    .then(
+                        function success(comments){
+                            $scope.comments = comments.data;
+                        },
+                        function error (err){
+                            console.log(err);
+                        }
+                    )
+            }
 
+            $scope.addComment = function (comment){
+                issuePageService.addComment(comment, $routeParams.id)
+                    .then(
+                        function success(data){
+                            $scope.newComment = {};
+                            $scope.comments = data.data;
+                        },
+                        function error(err){
+                            notifyService.showError('Cannot add comment at the moment', err);
+                        }
+                    )
+            };
+
+
+            getIssue();
+            getComments();
         }]);

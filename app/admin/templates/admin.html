@@ -14,7 +14,7 @@
             <tr>
                 <td>Find user <input type="text" ng-model="searchUser" class="form-control"></td>
             </tr>
-            <tr ng-repeat="user in users|filter:searchUser">
+            <tr ng-repeat="user in users|orderBy:'Username'|filter:searchUser">
                 <td>{{user.Username}}</td>
                 <td>{{user.isAdmin}}</td>
                 <td ng-if="!user.isAdmin"><button class="btn btn-info" ng-click="makeAdmin(user.Id)">Make admin</button></td>
