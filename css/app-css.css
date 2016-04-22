@@ -24,3 +24,17 @@
 #add-comment-field{
     margin-top: 20px;
 }
+.issue-tracker-footer-text{
+    text-align: center;
+    color: #9d9d9d;
+}
+.navbar-fixed-bottom{
+    background-color: #333;
+    padding: 10px;
+}
+.footer-github{
+    color: #9acfea;
+}
+.navbar-inverse{
+    border-radius: 0;
+}
