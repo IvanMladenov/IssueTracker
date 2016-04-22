@@ -12,7 +12,7 @@
         <div ng-include="'app/common/templates/header.html'"></div>
     </header>
 
-    <div ng-view></div>
+    <div ng-view class="main-element"></div>
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-route.js"></script>
@@ -50,12 +50,11 @@
     <script src="app/project/projectViewDirectives.js"></script>
     <script src="app/issuePage/issuePageDirectives.js"></script>
     <footer>
-        <div class="container-fluid navbar-fixed-bottom">
+        <div class="container-fluid navbar-fixed-bottom" id="issue-tracker-footer">
             <div class="issue-tracker-footer-text col-sm-4" >Author: Ivan Mladenov</div>
             <div class="issue-tracker-footer-text col-sm-4">Project's <a class="footer-github" href="https://github.com/IvanMladenov/IssueTracker">Github</a></div>
-            <div class="issue-tracker-footer-text col-sm-4">Powered by Angular</div>
+            <div class="issue-tracker-footer-text col-sm-4">Powered by Angularjs</div>
         </div>
-
     </footer>
 </body>
 </html>

@@ -14,11 +14,15 @@ angular.module('issueTracker.common.notifyService', [])
             if (serverError && serverError.data.error_description) {
                 errors.push(serverError.data.error_description);
             }
-            if (serverError && serverError.ModelState) {
-                var modelStateErrors = serverError.ModelState;
+            if (serverError && serverError.data.Message) {
+                errors.push(serverError.data.Message);
+            }
+            if (serverError && serverError.data.ModelState) {
+                var modelStateErrors = serverError.data.ModelState;
                 for (var propertyName in modelStateErrors) {
                     var errorMessages = modelStateErrors[propertyName];
-                    var trimmedName = propertyName.substr(propertyName.indexOf('.') + 1);
+                    var trimmedName =
+                        propertyName.substr(propertyName.indexOf('.') + 1);
                     for (var i = 0; i < errorMessages.length; i++) {
                         var currentError = errorMessages[i];
                         errors.push(trimmedName + ' - ' + currentError);

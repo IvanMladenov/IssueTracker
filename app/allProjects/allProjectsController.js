@@ -5,7 +5,7 @@ angular.module('issueTracker.projects.controller', [])
             controller: 'AllProjectsController',
             templateUrl: 'app/allProjects/templates/projects.html',
             access: {
-                requiresLoggedUser: true
+                requiresAdmin: true
             }
         })
     }])

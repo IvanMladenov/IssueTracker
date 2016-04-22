@@ -38,3 +38,10 @@
 .navbar-inverse{
     border-radius: 0;
 }
+#issue-tracker-footer{
+    background-color: #333;
+    padding: 10px;
+}
+.main-element{
+    margin-bottom: 100px;
+}
